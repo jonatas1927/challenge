@@ -1,11 +1,41 @@
-.table{
-    border: solid;
-    border-color: black;
-    background-color: red;
+.table {
+    // border: solid;
+    // border-color: black;
+    // background-color: red;
 }
 
-.coluna{
-    border: solid;
-    border-color: black;
-    background-color: green;
+.column_header {
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.table_contant {
+    background-color: #FFFFFF;
+}
+
+.form_search {
+    background-color: white;
+    margin: 5%;
+    border-radius: 10px;
+}
+
+.form{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.form_label{
+    text-align: left;
+    color: #020202;
+}
+
+.title{
+    margin: 10px;
+    float: left;
+}
+
+.title_page{
+    color: white;
+    float: left;
+    margin-top: 50px;
 }
