@@ -12,6 +12,7 @@ export interface TableColumn {
     search?: boolean
     customRender?: (value: any, row: any) => React.Component
     type?: "text" | "email" | "phone" | "number" | "cpf" | null
+    customFormat?: (value: any, row: any) => string
 }
 
 export interface TableComponentProps {
@@ -85,7 +86,6 @@ export default class TableComponent extends React.Component<TableComponentProps>
                                             <Col md={{ span: 8, offset: 7 }}>
                                                 <ButtonComponent type="button" label="Filtrar" onClick={() => {
                                                     this.props.filterMethod(formikBag.values)
-                                                    // console.log(formikBag, 'aaaa')
                                                 }} />
                                             </Col>
                                         </Row>
@@ -111,7 +111,7 @@ export default class TableComponent extends React.Component<TableComponentProps>
                                 return <tr>
                                     <td><BsFillTrashFill onClick={() => this.props.deleteMethod(row)} /> <BsPencilSquare onClick={() => this.props.editMethod(row)} /> </td>
                                     {this.props.collumns.map((col, index) => {
-                                        return <td>{row[col.field]}</td>
+                                        return <td>{col.customFormat ? col.customFormat(row[col.field], row) : row[col.field]}</td>
                                     })}
                                 </tr>
                             })}
