@@ -15,13 +15,14 @@
 
 .form_search {
     background-color: white;
-    margin: 5%;
+    margin: 10px;
     border-radius: 10px;
+    min-width: 90%;
 }
 
 .form{
-    margin-left: 10%;
-    margin-right: 10%;
+    // margin-left: 10%;
+    // margin-right: 10%;
 }
 
 .form_label{
@@ -34,8 +35,12 @@
     float: left;
 }
 
-.title_page{
+.title_page_table{
+    // margin-top: 10px;
     color: white;
-    float: left;
-    margin-top: 50px;
+    text-align: left;
+}
+
+.btn_filtrar{
+    margin-bottom: 10px;
 }

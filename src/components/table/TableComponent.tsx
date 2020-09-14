@@ -42,19 +42,21 @@ export default class TableComponent extends React.Component<TableComponentProps>
         return <div>
             <Container>
                 <Row>
-                    <div className="title_page">
-                        {this.props.pageName}
-                    </div>
+                    <span className="title_page_table">
+                        <Col md={{ span: 12, offset: 1 }}>
+                            {this.props.pageName}
+                        </Col>
+                    </span>
                 </Row>
                 <Row>
                     <div className="form_search">
-                        <Container>
-                            <Row>
+                        <Row>
+                            <Col md={{ span: 12, offset: 0 }}>
                                 <div className="title">
                                     <span>Filtros</span>
                                 </div>
-                            </Row>
-                        </Container>
+                            </Col>
+                        </Row>
                         <Formik
                             initialValues={{}}
                             onSubmit={(values, actions) => {
@@ -83,7 +85,7 @@ export default class TableComponent extends React.Component<TableComponentProps>
                                             })}
                                         </Row>
                                         <Row>
-                                            <Col md={{ span: 8, offset: 7 }}>
+                                            <Col md={{ span: 8, offset: 7 }} className="btn_filtrar">
                                                 <ButtonComponent type="button" label="Filtrar" onClick={() => {
                                                     this.props.filterMethod(formikBag.values)
                                                 }} />
@@ -95,7 +97,8 @@ export default class TableComponent extends React.Component<TableComponentProps>
                         />
                     </div>
                 </Row>
-                <Row>{this.props.beforeTable ? this.props.beforeTable : null}</Row>
+                <Row>
+                    {this.props.beforeTable ? this.props.beforeTable : null}</Row>
                 <Row>
                     <Table responsive>
                         <thead>

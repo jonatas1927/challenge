@@ -78,7 +78,7 @@ export class LeadsForm extends React.Component<any, any> {
             return <>
                 <Container>
                     <Row >
-                        <Col className="title_page">
+                        <Col md={{ span: 10, offset: 1 }} className="title_page">
                             <span>Cadastro de Leads</span>
                         </Col>
                     </Row>
@@ -111,102 +111,100 @@ export class LeadsForm extends React.Component<any, any> {
                                             }}
                                             validationSchema={this.modelLeads}
                                             render={() => (
-                                                <Form>
-                                                    <Container>
-                                                        <Row>
-                                                            <Col>
-                                                                <Field
-                                                                    name="nome"
-                                                                    render={({ field, meta }) => (
-                                                                        <div>
-                                                                            <FormBoots.Group controlId="Nome" {...field}>
-                                                                                <FormBoots.Label>Nome </FormBoots.Label>
-                                                                                <FormBoots.Control type="text" placeholder="Nome"  {...field} />
-                                                                            </FormBoots.Group>
-                                                                            {meta.touched && meta.error && meta.error}
-                                                                        </div>
-                                                                    )}
-                                                                />
-                                                            </Col>
-                                                            <Col>
-                                                                <Field
-                                                                    name="cpf"
-                                                                    render={({ field, meta }) => (
-                                                                        <div>
-                                                                            <FormBoots.Group controlId="cpf" {...field}>
-                                                                                <FormBoots.Label>CPF</FormBoots.Label>
-                                                                                <FormBoots.Control as={MaskedInput} mask="111.111.111-11" type="text" placeholder="CPF"   {...field} />
-                                                                            </FormBoots.Group>
-                                                                            {meta.touched && meta.error && meta.error}
-                                                                        </div>
-                                                                    )}
-                                                                />
-                                                            </Col>
-                                                        </Row>
-                                                        <Row>
-                                                            <Col>
-                                                                <Field
-                                                                    name="email"
-                                                                    render={({ field, meta }) => (
-                                                                        <div>
-                                                                            <FormBoots.Group controlId="email" {...field}>
-                                                                                <FormBoots.Label>Email</FormBoots.Label>
-                                                                                <FormBoots.Control type="email" placeholder="Email"  {...field} />
-                                                                            </FormBoots.Group>
-                                                                            {meta.touched && meta.error && meta.error}
-                                                                        </div>
-                                                                    )}
-                                                                />
-                                                            </Col>
-                                                            <Col>
-                                                                <Field
-                                                                    name="estadoCivil"
-                                                                    render={({ field, meta }) => (
-                                                                        <div>
-                                                                            <FormBoots.Group controlId="estadoCivil" {...field}>
-                                                                                <FormBoots.Label>Estado Civil</FormBoots.Label>
-                                                                                <FormBoots.Control as="select" {...field}>
-                                                                                    <option value="Solteiro(a)">Solteiro(a)</option>
-                                                                                    <option value="Casado(a)">Casado(a)</option>
-                                                                                    <option value="Víuvo(a)">Víuvo(a)</option>
-                                                                                    <option value="Separado(a)">Separado(a)</option>
-                                                                                </FormBoots.Control>
-                                                                            </FormBoots.Group>
-                                                                            {meta.touched && meta.error && meta.error}
-                                                                        </div>
-                                                                    )}
-                                                                />
+                                                <Form className="form_leads">
+                                                    <Row>
+                                                        <Col>
+                                                            <Field
+                                                                name="nome"
+                                                                render={({ field, meta }) => (
+                                                                    <div>
+                                                                        <FormBoots.Group controlId="Nome" {...field}>
+                                                                            <FormBoots.Label>Nome </FormBoots.Label>
+                                                                            <FormBoots.Control type="text" placeholder="Nome"  {...field} />
+                                                                        </FormBoots.Group>
+                                                                        {meta.touched && meta.error && meta.error}
+                                                                    </div>
+                                                                )}
+                                                            />
+                                                        </Col>
+                                                        <Col>
+                                                            <Field
+                                                                name="cpf"
+                                                                render={({ field, meta }) => (
+                                                                    <div>
+                                                                        <FormBoots.Group controlId="cpf" {...field}>
+                                                                            <FormBoots.Label>CPF</FormBoots.Label>
+                                                                            <FormBoots.Control as={MaskedInput} mask="111.111.111-11" type="text" placeholder="CPF"   {...field} />
+                                                                        </FormBoots.Group>
+                                                                        {meta.touched && meta.error && meta.error}
+                                                                    </div>
+                                                                )}
+                                                            />
+                                                        </Col>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col>
+                                                            <Field
+                                                                name="email"
+                                                                render={({ field, meta }) => (
+                                                                    <div>
+                                                                        <FormBoots.Group controlId="email" {...field}>
+                                                                            <FormBoots.Label>Email</FormBoots.Label>
+                                                                            <FormBoots.Control type="email" placeholder="Email"  {...field} />
+                                                                        </FormBoots.Group>
+                                                                        {meta.touched && meta.error && meta.error}
+                                                                    </div>
+                                                                )}
+                                                            />
+                                                        </Col>
+                                                        <Col>
+                                                            <Field
+                                                                name="estadoCivil"
+                                                                render={({ field, meta }) => (
+                                                                    <div>
+                                                                        <FormBoots.Group controlId="estadoCivil" {...field}>
+                                                                            <FormBoots.Label>Estado Civil</FormBoots.Label>
+                                                                            <FormBoots.Control as="select" {...field}>
+                                                                                <option value="Solteiro(a)">Solteiro(a)</option>
+                                                                                <option value="Casado(a)">Casado(a)</option>
+                                                                                <option value="Víuvo(a)">Víuvo(a)</option>
+                                                                                <option value="Separado(a)">Separado(a)</option>
+                                                                            </FormBoots.Control>
+                                                                        </FormBoots.Group>
+                                                                        {meta.touched && meta.error && meta.error}
+                                                                    </div>
+                                                                )}
+                                                            />
 
-                                                            </Col>
-                                                        </Row>
-                                                        <Row>
-                                                            <Col>
-                                                                <Field
-                                                                    name="nomeConjuge"
-                                                                    render={({ field, form, meta }) => {
-                                                                        return (
-                                                                            <div>
-                                                                                <FormBoots.Group controlId="nomeConjuge" {...field}>
-                                                                                    <FormBoots.Label>Nome do Cônjuge</FormBoots.Label>
-                                                                                    <FormBoots.Control disabled={form.values && form.values.estadoCivil !== "Casado(a)"} type="text" placeholder="Nome do Cônjuge"  {...field} />
-                                                                                </FormBoots.Group>
-                                                                                {meta.touched && meta.error && meta.error}
-                                                                            </div>
-                                                                        )
-                                                                    }}
-                                                                />
-                                                            </Col>
-                                                        </Row>
+                                                        </Col>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col md={{ span: 6, offset: 0 }}>
+                                                            <Field
+                                                                name="nomeConjuge"
+                                                                render={({ field, form, meta }) => {
+                                                                    return (
+                                                                        <div>
+                                                                            <FormBoots.Group controlId="nomeConjuge" {...field}>
+                                                                                <FormBoots.Label>Nome do Cônjuge</FormBoots.Label>
+                                                                                <FormBoots.Control disabled={form.values && form.values.estadoCivil !== "Casado(a)"} type="text" placeholder="Nome do Cônjuge"  {...field} />
+                                                                            </FormBoots.Group>
+                                                                            {meta.touched && meta.error && meta.error}
+                                                                        </div>
+                                                                    )
+                                                                }}
+                                                            />
+                                                        </Col>
+                                                    </Row>
 
-                                                        <Row>
-                                                            <Col md={{ span: 8, offset: 0 }}>
-                                                                <ButtonCancelComponent type="link" label="Cancelar" url="/leads" />
-                                                            </Col>
-                                                            <Col md={{ span: 8, offset: 7 }}>
-                                                                <ButtonComponent type="submit" label="Cadastrar" />
-                                                            </Col>
-                                                        </Row>
-                                                    </Container>
+                                                    <Row>
+                                                        <Col className="btn_cancelar">
+                                                            <ButtonCancelComponent type="link" label="Cancelar" url="/leads" />
+                                                        </Col>
+                                                        <Col className="btn_salvar" >
+                                                            <ButtonComponent type="submit" label="Cadastrar" />
+                                                        </Col>
+                                                    </Row>
                                                 </Form>
                                             )}
                                         />

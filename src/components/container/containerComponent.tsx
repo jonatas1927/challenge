@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row } from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 
 import './ConteinerComponent.scss'
 
@@ -8,9 +8,11 @@ export default class ContainerComponent extends React.Component {
         return <>
             <Container>
                 <Row>
-                    <div className="logo_acerta">
-                        <img className="logo" src="/img/logo_acerta.svg" alt="Logo da Acerta" />
-                    </div>
+                    <Col md={{ span: 12, offset: 1 }}>
+                        <div className="logo_acerta">
+                            <img className="logo" src="/img/logo_acerta.svg" alt="Logo da Acerta" />
+                        </div>
+                    </Col>
                 </Row>
                 <Row>
                     {this.props.children}
