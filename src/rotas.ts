@@ -1,4 +1,3 @@
-import { rootCertificates } from "tls";
 import { LeadsForm } from "./pages/leads/leadsForm";
 import LeadsListagem from "./pages/leads/leadsListagem";
 

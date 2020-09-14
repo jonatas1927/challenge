@@ -1,10 +1,10 @@
 import React from 'react'
-import { Col, Container, Form, Row, Table } from 'react-bootstrap'
+import { Col, Container, Row, Table } from 'react-bootstrap'
 import './tableComponent.scss'
-import * as yup from 'yup';
 import ButtonComponent from '../button/ButtonComponent';
-
-
+import { Field, Form, Formik } from 'formik';
+import { Form as FormBoots } from 'react-bootstrap'
+import { BsFillTrashFill, BsPencilSquare } from "react-icons/bs";
 
 export interface TableColumn {
     header: string
@@ -18,30 +18,24 @@ export interface TableComponentProps {
     collumns: TableColumn[]
     data: any[]
     pageName: string
-    beforeTable?: any
+    beforeTable?: any,
+    filterMethod: (values: object) => any
+    deleteMethod: (row: object) => void
+    editMethod: (row: object) => void
 }
 
 export default class TableComponent extends React.Component<TableComponentProps>{
 
-    formSearchValidation = yup.object().shape({
-        nome: yup.string().required(),
-        cpf: yup.string(),
-    });
 
     customTypeFormSearch(col: TableColumn) {
         switch (col.type) {
             case 'cpf':
                 return 'text'
-                break;
-
             default:
                 break;
         }
     }
 
-    goSearch(values: any) {
-        let dados = this.formSearchValidation.cast(values)
-    }
 
     render() {
         return <div>
@@ -60,28 +54,45 @@ export default class TableComponent extends React.Component<TableComponentProps>
                                 </div>
                             </Row>
                         </Container>
-                        <Form className="form">
-                            <Row>
-                                {
-                                    this.props.collumns.map(col => {
-                                        return col.search ? <Col>
-                                            <Form.Group controlId={col.field}>
-                                                <Form.Label className="form_label">{col.header}</Form.Label>
-                                                <Form.Control type={col.type ? this.customTypeFormSearch(col) : 'text'} placeholder={col.header} />
-                                            </Form.Group>
-                                        </Col> : null
-                                    })
-                                }
-                            </Row>
+                        <Formik
+                            initialValues={{}}
+                            onSubmit={(values, actions) => {
 
-
-                            <Row>
-                                <Col md={{ span: 8, offset: 7 }}>
-                                    <ButtonComponent type="submit" label="Filtrar" />
-                                </Col>
-                            </Row>
-
-                        </Form>
+                                actions.setSubmitting(true);
+                            }}
+                            render={formikBag => (
+                                <Form>
+                                    <Container>
+                                        <Row>
+                                            {this.props.collumns.map(col => {
+                                                return col.search ?
+                                                    <Col>
+                                                        <Field
+                                                            name={col.field}
+                                                            render={({ field, form, meta }) => (
+                                                                <>
+                                                                    <FormBoots.Group controlId={col.field}>
+                                                                        <FormBoots.Label className="form_label">{col.header}</FormBoots.Label>
+                                                                        <FormBoots.Control type={col.type ? this.customTypeFormSearch(col) : 'text'} placeholder={col.header} {...field} />
+                                                                    </FormBoots.Group>
+                                                                </>
+                                                            )}
+                                                        />
+                                                    </Col> : null
+                                            })}
+                                        </Row>
+                                        <Row>
+                                            <Col md={{ span: 8, offset: 7 }}>
+                                                <ButtonComponent type="button" label="Filtrar" onClick={() => {
+                                                    this.props.filterMethod(formikBag.values)
+                                                    // console.log(formikBag, 'aaaa')
+                                                }} />
+                                            </Col>
+                                        </Row>
+                                    </Container>
+                                </Form>
+                            )}
+                        />
                     </div>
                 </Row>
                 <Row>{this.props.beforeTable ? this.props.beforeTable : null}</Row>
@@ -96,14 +107,14 @@ export default class TableComponent extends React.Component<TableComponentProps>
                             </tr>
                         </thead>
                         <tbody className="table_contant">
-                            <tr>
-                                <td>actions</td>
-                                {this.props.data.map(row => {
-                                    return this.props.collumns.map((col, index) => {
+                            {this.props.data.map(row => {
+                                return <tr>
+                                    <td><BsFillTrashFill onClick={() => this.props.deleteMethod(row)} /> <BsPencilSquare onClick={() => this.props.editMethod(row)} /> </td>
+                                    {this.props.collumns.map((col, index) => {
                                         return <td>{row[col.field]}</td>
-                                    })
-                                })}
-                            </tr>
+                                    })}
+                                </tr>
+                            })}
                         </tbody>
                     </Table>
                 </Row>
